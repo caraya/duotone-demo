@@ -33,7 +33,7 @@ h1 {
 .layer1 {
   background-image: url(./waves.webp);
   background-size: cover;
-  filter: grayscale(0.5) brightness(100%);
+  filter: grayscale(0.5) brightness(110%);
 }
 
 .layer2 {
