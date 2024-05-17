@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const updateLayer1Filter = (grayscale, brightness) => {
     const brightnessValue = brightness + "%";
-    const filterValue = `grayscale(${grayscale}) brightness(${brightnessValue})`;
+    const filterValue = `filter: grayscale(${grayscale}) brightness(${brightnessValue});`;
     layer1.style.filter = filterValue;
     layer1FilterDisplay.textContent = filterValue;
   };
