@@ -6,22 +6,51 @@ document.addEventListener("DOMContentLoaded", () => {
   const layer1FilterDisplay = document.getElementById("layer1-filter");
   const layer2ColorDisplay = document.getElementById("layer2-color");
   const layer3ColorDisplay = document.getElementById("layer3-color");
+  const generatedCssDisplay = document.getElementById("generated-css");
 
   const updateLayer1Filter = (grayscale, brightness) => {
     const brightnessValue = brightness + "%";
-    const filterValue = `filter: grayscale(${grayscale}) brightness(${brightnessValue});`;
+    const filterValue = `grayscale(${grayscale}) brightness(${brightnessValue})`;
     layer1.style.filter = filterValue;
     layer1FilterDisplay.textContent = filterValue;
+    updateGeneratedCss();
   };
 
   const updateLayerColor = (layer, l, c, h, displayElement) => {
     const color = `oklch(${l} ${c / 100} ${h})`;
     layer.style.backgroundColor = color;
     displayElement.textContent = color;
+    updateGeneratedCss();
   };
 
   const updateBlendMode = (layer, blendMode) => {
     layer.style.mixBlendMode = blendMode;
+    updateGeneratedCss();
+  };
+
+  const updateGeneratedCss = () => {
+    const layer1Filter = layer1.style.filter;
+    const layer2Color = layer2.style.backgroundColor;
+    const layer2BlendMode = layer2.style.mixBlendMode;
+    const layer3Color = layer3.style.backgroundColor;
+    const layer3BlendMode = layer3.style.mixBlendMode;
+
+    const css = `
+.layer1 {
+  filter: ${layer1Filter};
+}
+
+.layer2 {
+  background-color: ${layer2Color};
+  mix-blend-mode: ${layer2BlendMode};
+}
+
+.layer3 {
+  background-color: ${layer3Color};
+  mix-blend-mode: ${layer3BlendMode};
+}
+    `;
+    generatedCssDisplay.textContent = css.trim();
   };
 
   document.getElementById("grayscale1").addEventListener("input", (event) => {
@@ -89,9 +118,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Initial colors and blend modes update
-  updateLayer1Filter(1, 150);
+  updateLayer1Filter(0.5, 100);
   updateLayerColor(layer2, 50, 50, 10, layer2ColorDisplay);
   updateLayerColor(layer3, 50, 50, 180, layer3ColorDisplay);
   updateBlendMode(layer2, document.getElementById("blendMode2").value);
   updateBlendMode(layer3, document.getElementById("blendMode3").value);
+  updateGeneratedCss();
 });

@@ -14,16 +14,16 @@
     <div class="layer layer2"></div>
     <div class="layer layer3"></div>
   </div>
-
+  
   <div class="container">
     <div class="group">
       <label for="grayscale1">Grayscale (Layer 1):</label>
       <input type="range" id="grayscale1" min="0" max="1" step="0.1" value=".5">
       <label for="brightness1">Brightness (Layer 1):</label>
       <input type="range" id="brightness1" min="0" max="150" value="100">
-      <p>Layer 1 Filter: filter: <span id="layer1-filter"></span></p>
+      <p>Layer 1 Filter: <span id="layer1-filter"></span></p>
     </div>
-
+  
     <div class="group">
       <label for="l2">Lightness (Layer 2):</label>
       <input type="range" id="l2" min="0" max="150" value="50">
@@ -52,7 +52,7 @@
       </select>
       <p>Layer 2 Color: <span id="layer2-color"></span></p>
     </div>
-
+  
     <div class="group">
       <label for="l3">Lightness (Layer 3):</label>
       <input type="range" id="l3" min="0" max="100" value="50">
@@ -63,7 +63,7 @@
       <label for="blendMode3">Blend Mode (Layer 3):</label>
       <select id="blendMode3">
         <option value="normal">Normal</option>
-        <option value="multiply"selected>Multiply</option>
+        <option value="multiply" selected>Multiply</option>
         <option value="screen">Screen</option>
         <option value="overlay">Overlay</option>
         <option value="darken">Darken</option>
@@ -81,6 +81,11 @@
       </select>
       <p>Layer 3 Color: <span id="layer3-color"></span></p>
     </div>
+  </div>
+  
+  <div class="css-output">
+    <h2>Generated CSS:</h2>
+    <pre id="generated-css"></pre>
   </div>
   <script src="./main.js"></script>
 </body>
